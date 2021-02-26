@@ -227,7 +227,8 @@
     <div class="clearfix"></div>
     <div class="context primary-text-color">
 
-    <p>メンテナンス終了予定は1月4日午前12時予定です。</p>
+    <p>メンテナンス終了は<span id="view_time"></span>予定です。</p>
+
 
 
     </div>
@@ -238,6 +239,16 @@
 
 
     <script>
+document.getElementById("view_time").innerHTML = getNow();
+
+function getNow() {
+  var dt = new Date()
+  dt.setDate(dt.getDate() + 1)
+  var zero2 = function(v) { return ('0' + v).slice(-2) }
+  var nextDatetime = dt.getFullYear() + "年" + zero2(dt.getMonth() + 1) + "月" + zero2(dt.getDate()) + "日0時"
+  return nextDatetime;
+}
+
      function ErrorPage(container, pageType, templateName) {
        this.$container = $(container);
        this.$contentContainer = this.$container.find(templateName == 'sign' ? '.sign-container' : '.content-container');
